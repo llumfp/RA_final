@@ -46,6 +46,9 @@ Desarrollar un robot móvil autónomo, modelado como un toro, que pueda navegar 
 
 [Este apartado deberá ser completado por el usuario con instrucciones específicas sobre cómo ejecutar los scripts y simulaciones para cada parte del proyecto.]
 
+
+Para ejecutar el pddl: .\metricff.exe -o domain_basic.pddl -f problem.pddl -O > output.txt
+
 ## Autores
 
 - Casanovas Cordero, Alex Miquel
