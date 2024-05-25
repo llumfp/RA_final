@@ -3,7 +3,7 @@
   
   (:objects
     pos1 pos2 pos3 pos4 pos5 pos6 pos7 pos8 pos9 pos10 pos11 pos12 pos13 pos14 pos15 pos16 - cell
-    robot - robot
+    rob - robot
     p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 - piece
     h0 h1 h2 h3 - floor
 
@@ -29,7 +29,7 @@
     (at p16 pos16)
 
     ;el robot empieza sin coger nada
-    (free robot)
+    (free rob)
 
     ;empezamos que todos las posiciones estan en altura de 1 (porque hay una pieza)
     (= (height pos1) 1)
@@ -53,6 +53,8 @@
     (= (height h1) 1)
     (= (height h2) 2)
     (= (height h3) 3)
+
+    (at rob pos1)
 
 
   )
