@@ -69,13 +69,6 @@ for step in moves_clean:
         pos = CONFIGURACIONS[step[-1]]
         cerrar_pinza(Cerrar_pinza, sock)
 
-
-
-
-
-
-
-
 # Mensaje que se imprime cuando se finaliza la ejecución
 # de la trayectoria
 print("Trayectoria finalizada")
