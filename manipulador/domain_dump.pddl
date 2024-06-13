@@ -21,12 +21,12 @@
 
 (:action pick
     :parameters (?r - robot ?p - piece ?pos - cell)
-    :precondition (and (free ?r) (at ?r ?pos) (at ?p ?pos)(occupied ?pos))
+    :precondition (and (free ?r) (at ?r ?pos) (at ?p ?pos))
     :effect (and (grabbed ?r ?p) (not (free ?r)) (not (at ?p ?pos))(not(occupied ?pos)))
 )
 
 (:action place
-  :parameters (?r - robot ?p - piece ?pos - cell ?f - floor)
+  :parameters (?r - robot ?p - piece ?pos - cell)
   :precondition (and (at ?r ?pos) (grabbed ?r ?p) (not(occupied ?pos)))
   :effect (and (free ?r) (not(grabbed ?r ?p)) (occupied ?pos))
 ))

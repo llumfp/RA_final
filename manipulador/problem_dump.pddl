@@ -3,7 +3,7 @@
   (:domain queen_movement)
   
   (:objects
-    pos1 pos2 pos3 pos4- cell
+    pos1 pos2 pos3 pos4 - position
     rob - robot
     p1 p2 p3- piece
   )
@@ -16,6 +16,10 @@
     (free rob)
     
     (at rob pos1)
+
+    (occupied pos1)
+    (occupied pos2)
+    (occupied pos3)
   )
   
   (:goal
