@@ -21,7 +21,7 @@
 
 (:action pick
     :parameters (?r - robot ?p - piece ?pos - cell)
-    :precondition (and (free ?r) (at ?r ?pos) (at ?p ?pos))
+    :precondition (and (free ?r) (at ?r ?pos) (at ?p ?pos)(occupied ?pos))
     :effect (and (grabbed ?r ?p) (not (free ?r)) (not (at ?p ?pos))(not(occupied ?pos)))
 )
 
