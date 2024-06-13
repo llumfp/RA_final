@@ -44,6 +44,8 @@ CONFS =    {'POS1' : [-121.83, -96.79, -110.78, -62.65, 91.92, 147.28],
 
 CONFIGURACIONS = {}
 for p,lst in CONFS.items():
-    CONFIGURACIONS[p] = [i*(math.pi / 180) for i in lst]
+    CONFIGURACIONS[p] = [i*(1 / (2*180)) for i in lst]
 
-
+print(CONFIGURACIONS['POS15']) 
+print(CONFIGURACIONS['POS12'])
+print(CONFIGURACIONS['POS11'])
