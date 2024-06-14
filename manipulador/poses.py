@@ -42,10 +42,16 @@ CONFS =    {'POS1' : [-121.83, -96.79, -110.78, -62.65, 91.92, 147.28],
                     'POS15' : [-79, -180.1, 44.61, -135.9, 88.42, 188.4],
                     'POS16' : [-67.94, -135.31, -51.58, -81.86, 89.73, 202.52]}
 
+CONFIGURACIONS_RAD = {}
 CONFIGURACIONS = {}
 for p,lst in CONFS.items():
-    CONFIGURACIONS[p] = [i*(1 / (2*180)) for i in lst]
+    CONFIGURACIONS_RAD[p] = [i*(math.pi / 180) for i in lst]
+
+for p,lst in CONFIGURACIONS_RAD.items():
+    CONFIGURACIONS[p] = [(i-(-2*math.pi))/(2*math.pi - (-2*math.pi)) for i in lst]
+
 
 print(CONFIGURACIONS['POS15']) 
 print(CONFIGURACIONS['POS12'])
 print(CONFIGURACIONS['POS11'])
+print(CONFIGURACIONS['POS1'])

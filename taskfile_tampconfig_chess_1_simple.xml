@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Task name= "OMPL_RRTconnect_chess_ur3_gripper_1_simple.xml" >
+	<Initialstate>
+		<Object object="p1"> 0.33079166666666665 0.3655694444444444 0.34613888888888883 0.412986111111111 0.627666666666666 0.7045555555555556 0.0  </Object>
+	</Initialstate>
+</Task>
