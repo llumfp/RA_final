@@ -1,0 +1,7 @@
+<launch>
+  <node name="move_node" pkg="final" type="move_new.py" output="screen"/>
+  <node name="publish_node" pkg="final" type="publisher_new.py" output="screen"/>
+<node pkg="final" type="send_goal_client.py" name="move_base_action_client" output="screen"/>
+
+</launch>
+

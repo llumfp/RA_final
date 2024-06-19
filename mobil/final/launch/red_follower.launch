@@ -1,0 +1,6 @@
+<launch>
+  <node name="move_node" pkg="final" type="move.py" output="screen"/>
+  <node name="publish_node" pkg="final" type="publisher.py" output="screen"/>
+
+</launch>
+
