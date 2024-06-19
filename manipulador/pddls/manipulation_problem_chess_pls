@@ -1,0 +1,22 @@
+(define (problem manip_pawnB3)
+
+(:domain chessmanipulation)
+
+(:objects
+    pos2 pos4 pos5 pos6 - location
+    pawnB2 pawnB4 - obstacle
+    ur3a - robot
+)
+
+(:init
+    (in pawnB2 pos2)
+    (handEmpty ur3a)
+    (in pawnB4 pos4)
+)
+
+(:goal
+    (and 
+    (in pawnB4 pos5)
+    (in pawnB2 pos6))
+)
+)
