@@ -1,58 +1,90 @@
-# Proyecto Final de Robótica Avanzada
+## Descripció General
 
-## Descripción General
+Aquest document detalla la implementació dels components principals per al projecte final de l'assignatura de Robòtica Avançada. S'han desenvolupat un sistema de manipulació robòtica i un de robòtica mòbil.
 
-Este documento describe la implementación de dos componentes principales para el proyecto final de la asignatura de Robótica Avanzada. Se desarrollarán un sistema de manipulación robótica y un robot móvil autónomo, con enfoques en programación, simulación y planificación robótica.
+---
 
-## Parte 1: Sistema de Manipulación Robótica
+## Part 1: Sistema de Manipulació Robòtica
 
-### Objetivo
+### Objectiu
 
-Implementar un sistema de manipulación robótica que utilice un robot UR3 o UR3e para resolver una versión simplificada del problema de las N-reinas.
+Implementar un sistema de manipulació robòtica que utilitzi un robot UR3 per resoldre el problema de les N-reines. La nostra idea inicial és tenir una peça a cada casella i acabar apilant totes les peces en la posició de la reina així creant el seu tron.
 
-### Herramientas Utilizadas
+Cal mencionar, que en l'execució en el robot real i en simulació hem executat un fictici 2 reines, que no té restriccions de diagonals. Aquesta simplificació del problema es deu a la dificultat d'implementar tantes passes en el robot i modelant tantes altures com caldria.
 
-- **PDDL** (Planning Domain Definition Language)
-- **Planificadores de movimiento**
-- **The Kautham Project**
-- **Robots UR3 y UR3e**
+### Eines Utilitzades
 
-### Archivos
+- **PDDL** (Planning Domain Definition Language) per a la definició de dominis i problemes de planificació.
+- **The Kautham Project** per a la configuració i simulació d'escenaris de manipulació.
+- **Robot UR3** de Universal Robots per a la implementació física de la solució.
 
-- `domain.pddl`: Contiene la definición del dominio de la tarea.
-- `problem.pddl`: Define el problema específico a resolver.
-<!-- - `simulation_results.md`: Documenta los resultados de las simulaciones.
-- `implementation_scripts.py`: Scripts de implementación para el UR3. -->
+### Estructura de Directori i Fitxers
 
-## Parte 2: Robot Móvil Autónomo - "El Toro Robótico"
+### Directori: `manipulador`
 
-### Objetivo
+Aquest directori conté tots els fitxers relacionats amb la manipulació robòtica.
 
-Desarrollar un robot móvil autónomo, modelado como un toro, que pueda navegar autónomamente y seguir objetos de color rojo sin interactuar peligrosamente con humanos.
+- **kautham/**: Fitxers de configuració i scripts relacionats amb l'ús de Kautham.
+    - `2queens_pls_change_poses.xml`: Problem File de Kautham on hem modificat les posicions segons les que hem obtingut des del robot real, que no són exactes en simulació degut a la diferent orientació del robot.
+    - `2queens_pls.xml`: Problem File de Kautham per al problema de les peces d'escacs.
+    - `poses.py`: Script en Python per definir o modificar les configuracions en el context de Kautham. Converteix els angles de graus a radiants i els normalitza entre pi i -pi.
+    - `tampconfig_2queens_pls.xml`: Fitxer de configuració TAMP per a la manipulació de peces en Kautham.
+- **pddls/**: Fitxers relacionats amb la planificació utilitzant PDDL.
+    - `chessmanipulationdomain.pddl`: Definició del domini PDDL per a la manipulació de peces d'escacs. Aquest l'hem obtingut d'un codi antic i ens serveix per a la simplificació del problema a 2 reines.
+    - `domain_movement.pddl`: Domini PDDL per a la planificació de moviments modelant les altures de les piles que creem en les posicions de les reines.
+    - `domain_nofluents.pddl`: Definició del domini PDDL sense fluents (el mateix que domain_movement.pddl). Aquest es va crear ja que el el planificador que utilitza el codi preestablert que teníem a la carpeta catkin_wsTAMP no acceptava fluents. Malgrat això vam acabar utilitzant una versió encara més simplificada (chessmanipulationdomain.pddl)
+    - `domain_queens.pddl`: Domini PDDL específic per resoldre el problema de les N-reines.
+    - `problem_movement.pddl`: Definició d'un problema específic utilitzant el domini de moviment. Aquest problema es crea a partir de create_problem.py.
+    - `problem_nofluents.pddl`: Problema PDDL associat al domini sense fluents.
+    - `problem_queens.pddl`: Problema PDDL per al domini de les 4-reines.
+    - `manipulation_problem_2queens_pls`: Problema PDDL per a la manipulació de les nostres peces de les 2-reines.
+    - `metricff.exe`: Executable per al planificador Metric-FF. `cygwin1.dll` és necessari també per poder executar.
+    - `output_movement.txt`: Sortida de l'execució del planificador per al problema de moviment.
+    - `output.txt`: Sortida de l'execució del problema de les 4-reines.
+    - `create_problem.py`: Executa el problema de les 4-reines i agafa la solució per a construir el goal del problema de planificació de moviments, així també executant-lo i guardant els resultats a `output.txt` i `output_movement.txt` respectivament
+- **UR3e/**: Scripts i configuracions específiques per al robot UR3 i UR3e.
+    - `pinza10UR3.py`: Script en Python per a la configuració de la pinça en el UR3.
+    - `pinza40UR3.py`: Un altre script de configuració per a la pinça en el UR3.
+    - `read_xml.py`: Script per llegir i processar el fitxer taskfile i obtenir els paths per a mandar a executar la trajectòria al robot real.
+    - `taskfile_tampconfig_2queens_pls.xml`: Taskifile amb les configuracions corresponents a les trajectòries obtingut a partir del `tampconfig_2queens_pls.xml`, que utilitza RRTConnect per a planificar les trajectòries.
+    - `UR3_final.py`: Script principal per a l'execució final del projecte en el UR3 a partir de les trajectòries obtingudes a partir de read_xml. Es pot configurar el valor de la variable *pick_place_count*, que indica quantes seqüències pick-place ha de realitzar.
 
-### Herramientas Utilizadas
+---
 
-- **ROS** (Robot Operating System)
-- **Turtlebot3 Waffle**
-- **Python** para scripting y control del robot
+## Part 2: Robot Mòbil Autònom - "El Toro Robòtic"
 
-### Archivos
+### Objectiu
 
-<!-- - `setup_instructions.md`: Instrucciones detalladas de instalación y configuración.
-- `navigation_scripts.py`: Scripts para la navegación y seguimiento del robot.
-- `detection_algorithms.py`: Algoritmos para la detección de personas y objetos. -->
+Desenvolupar un robot mòbil autònom, modelat com un toro, que pugui navegar de forma autònoma i seguir objectes de color vermell de forma quadrada o rectangular.
 
-## Cómo Usar
+### Eines Utilitzades
 
-[Este apartado deberá ser completado por el usuario con instrucciones específicas sobre cómo ejecutar los scripts y simulaciones para cada parte del proyecto.]
+- **ROS** (Robot Operating System) per a la integració i el control del robot.
+- **Turtlebot3 Waffle** com a plataforma de maquinari.
+- **Python** per a l'scripting i el control del robot.
 
+### Fitxers
 
-Para ejecutar el pddl: .\metricff.exe -o domain_basic.pddl -f problem.pddl -O > output.txt
+- *[Fitxers específics per a aquesta part del projecte]*
 
-## Autores
+---
+
+## Com Utilitzar
+
+Instruccions específiques sobre com executar els scripts i simulacions per a cada part del projecte seran completades per l'usuari.
+
+Per executar el PDDL, des del directori `manipulador/pddls`:
+
+```
+python create_problem.py
+```
+
+---
+
+## Autors
 
 - Casanovas Cordero, Alex Miquel
 - Fuster Palà, Llum
 - Gálvez Serrano, Paula
 - Saurina Ricós, Joan
-- Tomás Martínez, Sergi
+- Tomás Martínez, Serg
