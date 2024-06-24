@@ -73,7 +73,7 @@ Desenvolupar un robot mòbil autònom, modelat com un toro, que pugui navegar de
   - `move_new.py`
   - `publisher_new.py`
   - `red_new.py`
-  - `send_goal_client`
+  - `send_goal_client.py`
 
 ### Com Utilitzar
 
