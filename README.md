@@ -65,26 +65,44 @@ Desenvolupar un robot mòbil autònom, modelat com un toro, que pugui navegar de
 
 ### Fitxers
 
-- *[Fitxers específics per a aquesta part del projecte]*
+- **Versió 1**
+  - `move.py`
+  - `publisher.py`
+  - `red_squares.py`
+- **Versió 2**
+  - `move_new.py`
+  - `publisher_new.py`
+  - `red_new.py`
+  - `send_goal_client`
 
----
+### Com Utilitzar
 
-## Com Utilitzar
+Per la primera versió:
 
-Instruccions específiques sobre com executar els scripts i simulacions per a cada part del projecte seran completades per l'usuari.
-
-Per executar el PDDL, des del directori `manipulador/pddls`:
-
+```bash
+roslaunch final red_follower.launch
 ```
-python create_problem.py
+
+Per la segona versió:
+
+```bash
+roslaunch final red_follower_2.launch
 ```
 
----
+La primera versió segueix objectes vermells i la segona, a més, aproxima la posició amb trigonometria i evita els obstacles així.
+
+### Descripció dels fitxers:
+
+`move.py` i `move_new.py`: Nodes que controlen el moviment del robot.
+`publisher.py` i `publisher_new.py`: Nodes que gestionen la publicació de dades necessàries per al seguiment d'objectes.
+`red_squares.py` i `red_new.py`: Funcions auxiliars per a la detecció d'objectes vermells.
+`send_goal_client`: Node que envia els objectius de posició al robot per moure's cap a la seva destinació.
+
 
 ## Autors
 
 - Casanovas Cordero, Alex Miquel
 - Fuster Palà, Llum
 - Gálvez Serrano, Paula
-- Saurina Ricós, Joan
+- Saurina i Ricós, Joan
 - Tomás Martínez, Serg
