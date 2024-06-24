@@ -93,10 +93,10 @@ La primera versió segueix objectes vermells i la segona, a més, aproxima la po
 
 ### Descripció dels fitxers:
 
-`move.py` i `move_new.py`: Nodes que controlen el moviment del robot.
-`publisher.py` i `publisher_new.py`: Nodes que gestionen la publicació de dades necessàries per al seguiment d'objectes.
-`red_squares.py` i `red_new.py`: Funcions auxiliars per a la detecció d'objectes vermells.
-`send_goal_client`: Node que envia els objectius de posició al robot per moure's cap a la seva destinació.
+- `move.py` i `move_new.py`: Nodes que controlen el moviment del robot.
+- `publisher.py` i `publisher_new.py`: Nodes que gestionen la publicació de dades necessàries per al seguiment d'objectes.
+- `red_squares.py` i `red_new.py`: Funcions auxiliars per a la detecció d'objectes vermells.
+- `send_goal_client`: Node que envia els objectius de posició al robot per moure's cap a la seva destinació.
 
 
 ## Autors
